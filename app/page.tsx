@@ -8,14 +8,14 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <>
-      {/* <Loading/> */}
       <Header/>
       <CountdownTimer/>
       <OurStory/>
 
-      <Suspense fallback={<div>Cargando...</div>}>
+      <Suspense fallback={<Loading/>}>
         <KeyDetails/>
       </Suspense>
+
       <Footer/>
     </>
   );

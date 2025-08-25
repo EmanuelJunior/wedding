@@ -18,7 +18,7 @@ export const WeddingData = () => {
 
           <div className="flex items-center gap-1">
             <Clock className="w-4 h-4"/>
-            <p className="text-xs">4:00 PM - 5:00 PM</p>
+            <p className="text-xs">2:00 PM - 3:00 PM</p>
           </div>
 
           <div className="flex items-center gap-1 mt-1">

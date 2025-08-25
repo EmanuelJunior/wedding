@@ -12,7 +12,7 @@ export const Countdown = () => {
     })
   
     useEffect(() => {
-      const weddingDate = new Date('2025-11-09T13:00:00') // Asume que la boda es el 12 de diciembre de 2024 a las 4:00 PM
+      const weddingDate = new Date('2025-10-11T13:00:00') // Asume que la boda es el 12 de diciembre de 2024 a las 4:00 PM
       
       const timer = setInterval(() => {
         const now = new Date()

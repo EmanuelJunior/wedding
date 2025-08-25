@@ -26,15 +26,15 @@ export const KeyDetails = () => {
         <div className="text-gray-700 dark:text-white space-y-4 font-cormorant font-semibold text-lg">
           <div className="flex items-center space-x-2">
             <Church className="w-5 h-5 text-red-700 dark:text-red-500" />
-            <p>Dirección: Salon Social Apartamentos Olivar</p>
+            <p>Dirección: Capilla Sagrada Familia, Vista Hermosa, El Santuario, Antioquia</p>
           </div>
           <div className="flex items-center space-x-2">
             <Phone className="w-5 h-5 text-red-700 dark:text-red-500" />
             <p>Contacto: +57 304 473 2196 o +57 301 697 2311</p>
           </div>
-          <p>
+          {/* <p>
             Instrucciones: Al llegar, dirígete a la entrada principal y sigue las señales hacia el salón de eventos.
-          </p>
+          </p> */}
           <div className="flex justify-center space-x-4 mt-4">
             <Button
               variant={activeView === 'map' ? 'solid' : 'flat'}
@@ -70,7 +70,7 @@ export const KeyDetails = () => {
               {[
                 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqqYVHJmTV6rJiAefMgUwPJxtlj4Ka_m3Jpry0Rtr-GBsuhAruL_Ii1bgw9AdnZGklCw85Uwu2crEYGaiLkp4N_LFotQaOvpwSIBmU0Eqdik2qY_OKwRorIc2uPGBA3C0BqM8LeJg=s1360-w1360-h1020-rw',
                 'https://i.ibb.co/sJgqFqmH/Imagen-de-Whats-App-2025-08-18-a-las-19-43-55-43faadb1.jpg',
-                'https://cdn0.matrimonio.com.co/vendor/8372/3_2/960/jpeg/boda-16_10_168372-171593155450686.jpeg',
+                'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npB8P83LL7aGZqB4x10L2Ia44tDDVGhCCyhPxZPYW1vRh3iwhW-CSOdsLPxZN0PFg5pGrBPgTgw8xI7MZ1uSFoF38zN-pIBtGxWn9TO4yWLIZWA19XWW_4F8kgYNrLM0uV76vsE=w203-h203-k-no',
                 'https://cdn0.matrimonio.com.co/vendor/8372/3_2/960/jpeg/boda-4_10_168372-171593137585826.jpeg',
                 'https://cdn0.matrimonio.com.co/vendor/8372/3_2/960/jpeg/boda-3_10_168372-171593135858140.jpeg',
               ].map((src, index) => (
@@ -95,7 +95,7 @@ export const KeyDetails = () => {
         <div className="text-gray-700 dark:text-white space-y-4 font-cormorant font-semibold text-lg">
           <div className="flex items-center space-x-2">
             <MapPin className="w-5 h-5 text-red-700 dark:text-red-500" />
-            <p>Dirección: Apartamentos Olivar</p>
+            <p>Dirección: Apartamentos Olivar, Cra.60a #62-02, Rionegro, Antioquia</p>
           </div>
           <div className="flex items-center space-x-2">
             <Phone className="w-5 h-5 text-red-700 dark:text-red-500" />

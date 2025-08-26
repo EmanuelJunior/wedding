@@ -71,7 +71,7 @@ const GalleryPhotosPage = () => {
         <div className='col-span-9 lg:col-span-3 flex gap-3'>
 
           <div className='flex flex gap-2'>
-            <Button isIconOnly size='sm' color='danger' onPress={onOpen}>
+            <Button isIconOnly size='sm' color='danger'>
               <Grid3x3 className='w-3 h-3'/>
             </Button>
 
@@ -96,17 +96,12 @@ const GalleryPhotosPage = () => {
           ))
         }
 
+        <PhotoModal
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+
       </section>
-
-      {/* <PhotoModal
-        isOpen={isOpen}
-        onClose={onClose}
-      /> */}
-
-      <AddPhotoModal
-        isOpen={isOpen}
-        onClose={onClose}
-      />
     </main>
   )
 }

@@ -25,7 +25,7 @@ export const PhotoCard = ({ onOpen }: Props) => {
           <p className='text-[11px] text-gray-400'>Hace 2 horas</p>
         </div>
 
-        <p className='text-gray-500 text-xs'>¡Qué emoción! Ya casi es el gran día 💕</p>
+        <p className='text-gray-500 dark:text-gray-300 text-xs'>¡Qué emoción! Ya casi es el gran día 💕</p>
 
         <div className='flex justify-between items-center gap-5 w-full'>
           <div className='flex gap-1 items-center'>

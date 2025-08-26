@@ -19,7 +19,7 @@ export default function LoginContent() {
     if (code && code.length === 6) {
       animateCodeInput(code)
     }
-  }, [searchParams]);
+  }, [searchParams, invitationCode]);
 
   useEffect(() => {
     const emailForParams = searchParams.get('email');
@@ -119,7 +119,7 @@ export default function LoginContent() {
           </div>
 
           {
-            !nextStep ? (
+            !nextStep || invitationCode.length !== 6 ? (
               <div className="space-y-6 ">
                 <InvitationCodeInput
                   onComplete={handleComplete}

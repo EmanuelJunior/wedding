@@ -15,14 +15,17 @@ import NextLink from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { ArrowLeft, Backpack, Calendar, HandHeart, Heart, Plus } from "lucide-react";
-import { Button } from "@nextui-org/react";
+import { ArrowLeft, Calendar, HandHeart, Heart, Plus } from "lucide-react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ButtonIcon } from "../ui/buttons/ButtonIcon";
 import { useRouter } from "next/navigation";
+import { AddPhotoModal } from "../dashboard/modals/AddPhotoModal";
 
 export const DashboardNavbar = () => {
+
+  const {isOpen, onOpen, onClose} = useDisclosure();
 
   const [leftDay, setLeftDay] = useState<number>(0);
   const pathname = usePathname();
@@ -117,13 +120,22 @@ export const DashboardNavbar = () => {
                 <ButtonIcon
                   icon={<HandHeart className="text-red-800 dark:text-red-500 w-5 h-5" />}
                   title="Dashboard Invitaciones"
+                  
                 />
               : pathname === '/dashboard/gallery' ?
-                <ButtonIcon
-                  icon={<Plus/>}
-                  title="Subir Foto"
-                  className="text-white bg-gradient-to-r from-red-500 to-pink-700"
-                /> : <></>
+                <>
+                  <ButtonIcon
+                    icon={<Plus/>}
+                    title="Subir Foto"
+                    onPress={onOpen}
+                    className="text-white bg-gradient-to-r from-red-500 to-pink-700"
+                  /> 
+
+                  <AddPhotoModal
+                    isOpen={isOpen}
+                    onClose={onClose}                 
+                  />
+                </> : <></>
             }
           </NextLink>
         </NavbarItem>
@@ -136,20 +148,19 @@ export const DashboardNavbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+          {siteConfig.navMenuItemsDashboard.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`} className="hover:dark:bg-red-500/50 hover:bg-red-900/50 rounded-lg">
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
+                color={"foreground"}
                 href="#"
                 size="lg"
+                className="text-xl w-full p-3 px-4 flex gap-3"
               >
-                {item.label}
+                { item.icon }
+                <div className="flex flex-col">
+                  <p>{item.label}</p>
+                  <p className="text-base dark:text-gray-400 text-gray-700">Buenos deseos</p>
+                </div>
               </Link>
             </NavbarMenuItem>
           ))}

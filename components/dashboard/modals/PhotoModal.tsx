@@ -20,10 +20,10 @@ export const PhotoModal = ({ isOpen, onClose }: Props) => {
             <>
               <ModalBody>
                 <section className='grid grid-cols-5 '>
-                  <div className='col-span-3'>
+                  <div className='col-span-5 md:col-span-3'>
                     <img src="/banner-principal.jpg" alt="photo" className='w-full  min-h-[400px]'/>
                   </div>
-                  <div className=' col-span-2 flex flex-col justify-between'>
+                  <div className='col-span-5 md:col-span-2 flex flex-col justify-between'>
                     <article className='p-4'>
                       <div className='flex gap-2 items-center'>
                         <Avatar size='sm' color='danger' name='EGZ'/>

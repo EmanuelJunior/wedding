@@ -21,7 +21,7 @@ export const MyProfile = () => {
         </div>
       </article>
 
-      <button className="w-full  py-2 rounded-lg border flex justify-center items-center gap-1 text-xs">
+      <button className="w-full  py-2 rounded-lg border dark:text-white dark:border-gray-300 flex justify-center items-center gap-1 text-xs">
         <Mail className="w-4 h-4"/>
         Reenviar Invitación Whatsapp
       </button>

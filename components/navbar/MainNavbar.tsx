@@ -81,11 +81,12 @@ export const MainNavbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+            <NavbarMenuItem key={`${item}-${index}`} className="hover:dark:bg-red-500/50 hover:bg-red-900/50 rounded-lg">
               <Link
                 color={"foreground"}
                 href="#"
                 size="lg"
+                className="text-3xl w-full p-3 px-4"
               >
                 {item.label}
               </Link>

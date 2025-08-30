@@ -114,7 +114,7 @@ export const DashboardNavbar = () => {
         </NavbarItem>
         {/* <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem> */}
         <NavbarItem className="hidden md:flex">
-          <NextLink href={siteConfig.links.authLogin}>
+          <NextLink href={ !pathname.includes('dashboard') ? siteConfig.links.authLogin : '#'}>
             {
               pathname === '/dashboard' ?
                 <ButtonIcon
@@ -127,7 +127,7 @@ export const DashboardNavbar = () => {
                   <ButtonIcon
                     icon={<Plus/>}
                     title="Subir Foto"
-                    onPress={onOpen}
+                    onClick={onOpen}
                     className="text-white bg-gradient-to-r from-red-500 to-pink-700"
                   /> 
 

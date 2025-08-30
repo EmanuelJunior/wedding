@@ -11,7 +11,7 @@ interface Props {
 export const PhotoModal = ({ isOpen, onClose }: Props) => {
 
   return (
-    <Modal isOpen={isOpen} size='4xl' onClose={onClose} backdrop='blur' classNames={{
+    <Modal isOpen={isOpen} size='4xl' onClose={onClose} backdrop='blur' scrollBehavior="outside" classNames={{
       body: 'p-0'
     }}>
       <ModalContent>
@@ -21,7 +21,7 @@ export const PhotoModal = ({ isOpen, onClose }: Props) => {
               <ModalBody>
                 <section className='grid grid-cols-5 '>
                   <div className='col-span-5 md:col-span-3'>
-                    <img src="/banner-principal.jpg" alt="photo" className='w-full  min-h-[400px]'/>
+                    <img src="/banner-principal.jpg" alt="photo" className='w-full rounded-lg min-h-[400px]'/>
                   </div>
                   <div className='col-span-5 md:col-span-2 flex flex-col justify-between'>
                     <article className='p-4'>
@@ -36,6 +36,7 @@ export const PhotoModal = ({ isOpen, onClose }: Props) => {
 
                       <p className='text-[12px] mt-3 dark:text-gray-100'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia exercitationem quos quas aut ipsa. Nostrum tempore voluptate voluptatum quidem adipisci. Excepturi reprehenderit qui quas iste enim quibusdam quae error nobis.</p>
                     </article>
+                    
 
                     <section className='px-4 '>
                       <div className='flex gap-2 items-start justify-between'>
@@ -56,6 +57,7 @@ export const PhotoModal = ({ isOpen, onClose }: Props) => {
                           <Heart className='w-4 h-4'/>
                         </Button>
                       </div>
+                      
                     </section>
 
                     <section>

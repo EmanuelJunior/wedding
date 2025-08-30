@@ -3,9 +3,11 @@
 import { PhotoModal } from '@/components/dashboard'
 import { PhotoCard } from '@/components/dashboard/cards/PhotoCard'
 import { AddPhotoModal } from '@/components/dashboard/modals/AddPhotoModal'
+import { ButtonIcon } from '@/components/ui/buttons/ButtonIcon'
+import { PhotoContext } from '@/contexts/photo'
 import { Button, Input, Select, SelectItem, Tab, Tabs, useDisclosure } from '@nextui-org/react'
-import { Grid3x3, Heart, Image, List, MessageCircle, Search, Star } from 'lucide-react'
-import React from 'react'
+import { Grid3x3, Heart, Image, List, MessageCircle, Plus, Search, Star } from 'lucide-react'
+import React, { useContext } from 'react'
 
 const statisticsGallery = [
   {
@@ -33,13 +35,14 @@ const statisticsGallery = [
 const GalleryPhotosPage = () => {
 
   const {isOpen, onOpen, onClose} = useDisclosure();
+  const { photos } = useContext(PhotoContext);
 
   return (
     <main className='mt-10 mx-10 md:mx-16 lg:mx-24'>
       <section className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 '>
         {
           statisticsGallery.map(({ icon, count, title }) => (
-            <div className="p-3 hover:cursor-pointer gap-2 flex flex-col justify-center items-center shadow-2xl rounded-lg dark:bg-gray-900">
+            <div key={title} className="p-3 hover:cursor-pointer gap-2 flex flex-col justify-center items-center shadow-2xl rounded-lg dark:bg-gray-900">
               { icon }
               <h1 className="text-xl dark:text-white font-extrabold font-serif">{ count }</h1>
               <p className="text-xs text-gray-400">{ title }</p>
@@ -71,7 +74,7 @@ const GalleryPhotosPage = () => {
         <div className='col-span-9 lg:col-span-3 flex gap-3'>
 
           <div className='flex flex gap-2'>
-            <Button isIconOnly size='sm' color='danger'>
+            <Button isIconOnly size='sm' color='danger' onClick={onOpen}>
               <Grid3x3 className='w-3 h-3'/>
             </Button>
 
@@ -88,20 +91,47 @@ const GalleryPhotosPage = () => {
         </div>
       </section>
 
-      <section className='my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        
-        {
-          [... new Array(10)].map(_ => (
-            <PhotoCard onOpen={onOpen}/>
-          ))
-        }
+      <ButtonIcon
+        icon={<Plus/>}
+        title="Subir Foto"
+        onClick={onOpen}
+        className="text-white bg-gradient-to-r from-red-500 to-pink-700 w-full mt-5 sm:hidden"
+      /> 
 
-        <PhotoModal
-          isOpen={isOpen}
-          onClose={onClose}
-        />
 
-      </section>
+      {
+        photos.length > 0 ? (
+
+          <section className='my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+            
+            {
+
+              photos.map(photo => (
+                <PhotoCard onOpen={onOpen} photo={photo}/>
+              ))
+            }
+
+
+            {/* <PhotoModal
+              isOpen={isOpen}
+              onClose={onClose}
+            /> */}
+
+          </section>
+        ) : (
+
+          <div className='w-full  p-5 mt-5'>
+            <img src="/no-data-dark.svg" className='h-[325px] w-full'/>
+            <h6 className='dark:text-white text-3xl  mt-5 text-center'>Todavia no hay fotos por mostrar</h6>
+          </div>
+        )
+      }
+
+      <AddPhotoModal
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+
     </main>
   )
 }

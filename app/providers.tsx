@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { MusicProvider } from "@/contexts/music";
+import { PhotoProvider } from "@/contexts/photo";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -16,10 +17,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-    <MusicProvider>
-      <NextUIProvider navigate={router.push}>
-        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-      </NextUIProvider>
-    </MusicProvider>
+    <PhotoProvider> 
+      <MusicProvider>
+        <NextUIProvider navigate={router.push}>
+          <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+        </NextUIProvider>
+      </MusicProvider>
+    </PhotoProvider>
   );
 }

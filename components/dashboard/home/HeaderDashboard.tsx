@@ -36,9 +36,9 @@ export const HeaderDashboard = () => {
 
       {
         !message.inProgress ? (
-          <section className="flex gap-3 justify-center items-center mt-3">
+          <section className="flex flex-wrap gap-3 justify-center items-center mt-3">
             <Button 
-              className="bg-white dark:bg-gray-900 dark:hover:text-gray-950 dark:text-white rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-300 transition-all shadow-2xl"
+              className="bg-white w-full sm:w-auto dark:bg-gray-900 dark:hover:text-gray-950 dark:text-white rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-300 transition-all shadow-2xl"
               onClick={() => confirmAttendance()}
             >
               <CheckCircle className="w-4 h-4"/>
@@ -46,7 +46,7 @@ export const HeaderDashboard = () => {
             </Button>
 
             <Button 
-              className="bg-white dark:text-gray-950 rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-red-200 hover:to-indigo-200 hover:opacity-100 transition-all shadow-2xl opacity-60"
+              className="bg-white w-full sm:w-auto dark:text-gray-950 rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-red-200 hover:to-indigo-200 hover:opacity-100 transition-all shadow-2xl opacity-60"
               onClick={() => rejectInvitation()}
             >
               <BadgeX className="w-4 h-4"/>

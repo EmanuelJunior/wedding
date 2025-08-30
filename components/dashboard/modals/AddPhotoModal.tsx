@@ -1,9 +1,12 @@
 "use client"
 
 
+import { PhotoContext } from "@/contexts/photo";
 import { Avatar, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, Textarea } from "@nextui-org/react"
 import { Heart, MessageCircle, Send, Upload } from "lucide-react"
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useContext, useRef, useState } from "react";
+
+
 
 interface Props {
   isOpen: boolean;
@@ -35,12 +38,13 @@ export const categories = [
 
 export const AddPhotoModal = ({ isOpen, onClose }: Props) => {
 
-      const fileInput = useRef<HTMLInputElement>(null);
+  const fileInput = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState<string>("");
   const [imageSrc, setImageSrc] = useState<string | null>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (!file) {
       setFileName("");
       setImageSrc(null);
@@ -55,7 +59,16 @@ export const AddPhotoModal = ({ isOpen, onClose }: Props) => {
     } else {
       setImageSrc(null);
     }
+
+    console.log({fileName, imageSrc})
   };
+
+
+  const { addPhoto } = useContext( PhotoContext );
+
+  const addNewPhoto = () => {
+    
+  }
 
   return (
 <Modal isOpen={isOpen} size='xl' onClose={onClose} backdrop='blur' scrollBehavior="inside">

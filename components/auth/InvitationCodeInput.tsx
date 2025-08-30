@@ -89,6 +89,7 @@ export const InvitationCodeInput: React.FC<Props> = ({ onComplete, code, setCode
           onChange={e => handleChange(index, e.target.value)}
           onKeyDown={e => handleKeyDown(index, e)}
           onFocus={() => handleFocus(index)}
+          autoFocus={ digit === '' ? true : false }
           className="w-12 h-14 text-center text-2xl border-[3px] border-gray-300 rounded-md focus:border-red-800 focus:dark:border-red-500 dark:text-white focus:outline-none font-serif"
           aria-label={`Dígito ${index + 1} del código de invitación`}
         />

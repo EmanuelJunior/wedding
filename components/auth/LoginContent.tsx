@@ -11,8 +11,8 @@ export default function LoginContent() {
   const [error, setError] = useState('')
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
-  const [nextStep, setNextStep] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [validateFillCode, setValidateFillCode] = useState<string[]>([]);
 
   useEffect(() => {
     const code = searchParams.get('code')
@@ -24,10 +24,14 @@ export default function LoginContent() {
   useEffect(() => {
     const emailForParams = searchParams.get('email');
 
-    if (emailForParams && nextStep) {
+    if (emailForParams) {
       animateEmailInput(emailForParams)
     }
-  }, [nextStep]);
+  }, []);
+
+  useEffect(() => {
+    setValidateFillCode([...invitationCode.filter( code => code !== "" && code )])
+  }, [invitationCode])
 
   const animateEmailInput = (emailForParams: string) => {
     const emailInputArray = emailForParams.split('');
@@ -39,12 +43,12 @@ export default function LoginContent() {
           newEmail[index] = digit;
           return newEmail.join('');
         })
-      }, index * 50)
+      }, index * 100)
 
       if (index === emailInputArray.length - 1) {
         setTimeout(() => {
           setShowSuccess(true);
-        }, (index + 1) * 50 + 100); // Wait for the last character to be set, plus a little extra time
+        }, (index + 1) * 100 + 200); // Wait for the last character to be set, plus a little extra time
       }
     })
     
@@ -60,11 +64,6 @@ export default function LoginContent() {
           return newCode
         })
       }, index * 70) // 70ms delay entre cada dígito
-
-      if ( index === codeArray.length -1 )
-        setTimeout(() => {
-          setNextStep(true)
-        }, 420)
     });
     
   }
@@ -119,7 +118,7 @@ export default function LoginContent() {
           </div>
 
           {
-            !nextStep || invitationCode.length !== 6 ? (
+            validateFillCode.length < 6 ? (
               <div className="space-y-6 ">
                 <InvitationCodeInput
                   onComplete={handleComplete}
@@ -141,17 +140,17 @@ export default function LoginContent() {
                   ) : (
                     <input 
                       type='text' 
-                      placeholder='xxxxx@wedding.com' 
-                      className='focus:dark:border-red-500 focus:border-red-700 outline-none font-serif rounded-lg border-[3px] px-3 py-2 text-2xl dark:text-white'
+                      placeholder='xxxxx@wedding.ev'
+                      className='focus:dark:border-red-500 focus:border-red-700 outline-none font-serif rounded-lg border-[3px] px-3 py-2 text-2xl dark:text-white w-full sm:w-auto'
                       value={email}
+                      autoFocus
+                      onChange={ e => setEmail(e.target.value)}
                     />
                   )
                 }
               </>
             )
           }
-
-
 
           <div className="pt-4">
             <p className="font-cormorant dark:text-gray-300 text-red-800 text-base">

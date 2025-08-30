@@ -1,12 +1,14 @@
 
+import { Photo } from "@/contexts/photo";
 import { Card, CardBody, CardFooter, Chip, Image } from "@nextui-org/react"
 import { MessageCircle, ThumbsUp, User } from "lucide-react"
 
 interface Props {
+  photo: Photo
   onOpen: () => void;
 }
 
-export const PhotoCard = ({ onOpen }: Props) => {
+export const PhotoCard = ({ onOpen, photo }: Props) => {
   return (
     <Card isPressable shadow="sm" className='flex' onPress={onOpen}>
       <CardBody className="overflow-visible p-0">
@@ -15,17 +17,17 @@ export const PhotoCard = ({ onOpen }: Props) => {
           className="w-full object-cover h-[140px]"
           radius="lg"
           shadow="sm"
-          src={"https://finagarcia.com/cdn/shop/articles/Moni_y_Ale_-_0007-1-1.jpg?crop=center&height=2048&v=1689242612&width=2048"}
+          src={ photo.image }
           width="100%"
         />
       </CardBody>
       <CardFooter className="text-small flex flex-col justify-center items-center gap-3">
         <div className='flex justify-between items-center gap-5 w-full'>
-          <Chip color='danger' variant='flat' size='sm' className='text-[11px]'>Ceremonia</Chip>
+          <Chip color='danger' variant='flat' size='sm' className='text-[11px]'>{ photo.category }</Chip>
           <p className='text-[11px] text-gray-400'>Hace 2 horas</p>
         </div>
 
-        <p className='text-gray-500 dark:text-gray-300 text-xs'>¡Qué emoción! Ya casi es el gran día 💕</p>
+        <p className='text-gray-500 dark:text-gray-300 text-xs'>{ photo.description }</p>
 
         <div className='flex justify-between items-center gap-5 w-full'>
           <div className='flex gap-1 items-center'>

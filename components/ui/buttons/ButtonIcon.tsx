@@ -5,15 +5,17 @@ interface Props {
   icon: ReactNode;
   title: string;
   className?: string;
+  onClick?: () => void
 }
 
-export const ButtonIcon = ({ icon, title, className = 'text-default-600 bg-default-100' }: Props ) => {
+export const ButtonIcon = ({ icon, title, onClick = () => {}, className = 'text-default-600 bg-default-100' }: Props ) => {
   return (
     <Button
       className={`${className} font-cormorant font-extrabold text-base`}
       startContent={ icon }
       variant="flat"
       size="sm"
+      onClick={onClick}
     >
       { title }
     </Button>

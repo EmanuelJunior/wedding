@@ -1,3 +1,5 @@
+"use client"
+
 import { Cake, Calendar, Church, Clock, Coffee, Gift, Map, MapPin, Pin, Shirt } from "lucide-react"
 
 export const WeddingData = () => {

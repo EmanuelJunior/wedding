@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { BadgeCheck, Heart } from 'lucide-react'
 import { InvitationCodeInput } from '@/components'
+import { login } from '@/app/actions'
 
 export default function LoginContent() {
   const [invitationCode, setInvitationCode] = useState(['', '', '', '', '', ''])
@@ -78,6 +79,15 @@ export default function LoginContent() {
     setError('')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if ( e.key === 'Enter' ) {
+      login({
+        email,
+        password: invitationCode.join('')
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Image Section */}
@@ -145,6 +155,7 @@ export default function LoginContent() {
                       value={email}
                       autoFocus
                       onChange={ e => setEmail(e.target.value)}
+                      onKeyDown={e => handleKeyDown(e)}
                     />
                   )
                 }

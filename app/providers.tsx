@@ -17,12 +17,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-    <PhotoProvider> 
+    // <PhotoProvider> 
       <MusicProvider>
         <NextUIProvider navigate={router.push}>
           <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
         </NextUIProvider>
       </MusicProvider>
-    </PhotoProvider>
+    // </PhotoProvider>
   );
 }

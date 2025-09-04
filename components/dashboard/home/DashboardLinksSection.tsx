@@ -1,3 +1,5 @@
+"use client"
+
 import { dashboardPageLinks } from "@/data/dashboard";
 import Link from "next/link";
 

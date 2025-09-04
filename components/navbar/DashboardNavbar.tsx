@@ -15,13 +15,14 @@ import NextLink from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { ArrowLeft, Calendar, HandHeart, Heart, Plus } from "lucide-react";
+import { ArrowLeft, Calendar, HandHeart, Heart, Plus, Power } from "lucide-react";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ButtonIcon } from "../ui/buttons/ButtonIcon";
 import { useRouter } from "next/navigation";
 import { AddPhotoModal } from "../dashboard/modals/AddPhotoModal";
+import { logout } from "@/app/actions";
 
 export const DashboardNavbar = () => {
 
@@ -117,11 +118,21 @@ export const DashboardNavbar = () => {
           <NextLink href={ !pathname.includes('dashboard') ? siteConfig.links.authLogin : '#'}>
             {
               pathname === '/dashboard' ?
-                <ButtonIcon
-                  icon={<HandHeart className="text-red-800 dark:text-red-500 w-5 h-5" />}
-                  title="Dashboard Invitaciones"
-                  
-                />
+                <div className="flex gap-2">
+                  <ButtonIcon
+                    icon={<HandHeart className="text-red-800 dark:text-red-500 w-5 h-5" />}
+                    title="Dashboard Invitaciones"
+                    
+                  />
+
+                  <form action={logout}>
+                    <ButtonIcon
+                      icon={<Power className="text-red-800 dark:text-red-500 w-5 h-5" />}
+                      title="Salir"
+                      type='submit'
+                    />
+                  </form>
+                </div>
               : pathname === '/dashboard/gallery' ?
                 <>
                   <ButtonIcon

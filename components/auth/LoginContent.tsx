@@ -49,9 +49,15 @@ export default function LoginContent() {
       if (index === emailInputArray.length - 1) {
         setTimeout(() => {
           setShowSuccess(true);
+
+          login({
+            email,
+            password: invitationCode.join('')
+          })
         }, (index + 1) * 100 + 200); // Wait for the last character to be set, plus a little extra time
       }
     })
+
     
   }
 
@@ -80,12 +86,16 @@ export default function LoginContent() {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    
     if ( e.key === 'Enter' ) {
       login({
         email,
         password: invitationCode.join('')
       })
+
+      setShowSuccess(true)
     }
+
   }
 
   return (
@@ -141,7 +151,7 @@ export default function LoginContent() {
                 )}
               </div>
             ) : (
-              <>
+              <>  
                 {
                   showSuccess ? (
                     <div className='flex justify-center'>

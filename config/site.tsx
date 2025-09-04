@@ -3,8 +3,8 @@ import { BookHeart, Camera, Clock, Home, MapPin, MessageCircle, Users } from "lu
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Boda Vanessa & Emanuel",
+  description: "Vanessa & Emanuel — Una página para celebrar nuestro amor, nuestra historia y la alegría de reunirnos en el día de nuestra boda.",
   navItems: [
     {
       label: "Inicio",

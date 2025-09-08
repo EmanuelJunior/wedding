@@ -1,9 +1,9 @@
 "use client"
 
-import { AddMessageForm } from "@/components/dashboard/"
+import { AddMessageForm, MessageCard } from "@/components/dashboard/"
 import { ideasForMessages } from "@/data/dashboard"
-import { Button, Textarea } from "@nextui-org/react"
-import { Lightbulb, MessageCircle, Send } from "lucide-react"
+import { Button, Card, CardBody } from "@nextui-org/react"
+import { Gem, Lightbulb, ThumbsUp } from "lucide-react"
 
 const MessagePage = () => {
   return (
@@ -28,6 +28,25 @@ const MessagePage = () => {
           }
         </div>
       </section>
+
+      <div className='mt-6'>
+        <h1 className='text-2xl dark:text-white'>Mensajes de los Invitados</h1>
+
+        {/* Card of guest to wedding */}
+        <div className='gap-4 my-4 grid grid-cols-1 md:grid-cols-2 '>
+          
+          {
+            [...new Array(5)].map( (_, index) => (
+              <MessageCard
+                key={ index }
+                fullName="Juan Pérez"
+                message="¡Felicidades en su boda! Les deseo toda la felicidad del mundo en esta nueva etapa de sus vidas juntos."
+                likes={5}
+              />
+            ))
+          }
+        </div>
+      </div>
     </main>
   )
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-import { BadgeCheck, Heart } from 'lucide-react'
+import { BadgeCheck, BadgeX, Heart } from 'lucide-react'
 import { InvitationCodeInput } from '@/components'
 import { login } from '@/app/actions'
 
@@ -14,6 +14,7 @@ export default function LoginContent() {
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [validateFillCode, setValidateFillCode] = useState<string[]>([]);
+  const params = useSearchParams();
 
   useEffect(() => {
     const code = searchParams.get('code')
@@ -48,7 +49,7 @@ export default function LoginContent() {
 
       if (index === emailInputArray.length - 1) {
         setTimeout(() => {
-          setShowSuccess(true);
+          // setShowSuccess(true);
 
           login({
             email,
@@ -85,6 +86,14 @@ export default function LoginContent() {
     setError('')
   }
 
+  useEffect(() => {
+    const error = params.get('error');
+
+    if ( error === 'Invalid-Credentials') {
+      setError('Puede que el correo o el codigo de tu invitación esten incorrectos verifica nuevamente!!!')
+    }
+  }, [params.get('error')])
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     
     if ( e.key === 'Enter' ) {
@@ -93,7 +102,7 @@ export default function LoginContent() {
         password: invitationCode.join('')
       })
 
-      setShowSuccess(true)
+      if ( !error ) setShowSuccess(true)
     }
 
   }
@@ -125,10 +134,14 @@ export default function LoginContent() {
             </h2>
 
             {
-              !showSuccess ? (
+              !showSuccess && !error ? (
                 <p className="font-cormorant dark:text-gray-300 text-gray-600 text-lg">
                   Ingresa el codigo de invitación para acceder a los detalles de nuestra boda
                 </p>
+              ) : error ?  (
+                <p className="font-cormorant dark:text-gray-300 text-gray-600 text-lg">
+                  {error}
+                  </p>
               ) : (
                 <p className="font-cormorant dark:text-gray-300 text-gray-600 text-lg">
                   Has iniciado correctamente, 🌸 Un instante por favor... estamos preparando la invitación para ti
@@ -147,7 +160,7 @@ export default function LoginContent() {
                 />
 
                 {error && (
-                  <p className="text-[#AA1E2D] text-sm">{error}</p>
+                  <p className="text-[#AA1E2D] dark:text-red-500 text-sm">{error}</p>
                 )}
               </div>
             ) : (
@@ -156,6 +169,10 @@ export default function LoginContent() {
                   showSuccess ? (
                     <div className='flex justify-center'>
                       <BadgeCheck className='w-16 h-16 text-red-700 dark:text-red-500 animate-pulse'/>
+                    </div>
+                  ) : error ? (
+                    <div className='flex justify-center'>
+                      <BadgeX className='w-16 h-16 text-red-700 dark:text-red-500 animate-pulse'/>
                     </div>
                   ) : (
                     <input 

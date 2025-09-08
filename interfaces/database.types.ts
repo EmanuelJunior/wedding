@@ -106,46 +106,42 @@ export type Database = {
       }
       guests: {
         Row: {
-          code: string
           familyId: number | null
           fullName: string
           id: number
           invitationType: number | null
           phone: string
-          stateId: number | null
+          role: Database["public"]["Enums"]["role"]
+          status: Database["public"]["Enums"]["status"]
           tableId: number | null
+          userId: string | null
           verseId: number | null
         }
         Insert: {
-          code: string
           familyId?: number | null
           fullName: string
           id?: number
           invitationType?: number | null
           phone: string
-          stateId?: number | null
+          role?: Database["public"]["Enums"]["role"]
+          status?: Database["public"]["Enums"]["status"]
           tableId?: number | null
+          userId?: string | null
           verseId?: number | null
         }
         Update: {
-          code?: string
           familyId?: number | null
           fullName?: string
           id?: number
           invitationType?: number | null
           phone?: string
-          stateId?: number | null
+          role?: Database["public"]["Enums"]["role"]
+          status?: Database["public"]["Enums"]["status"]
           tableId?: number | null
+          userId?: string | null
           verseId?: number | null
         }
         Relationships: [
-          {
-            foreignKeyName: "invitados_estado_id_fkey"
-            columns: ["stateId"]
-            isOneToOne: false
-            referencedRelation: "states"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "invitados_familia_id_fkey"
             columns: ["familyId"]
@@ -195,16 +191,19 @@ export type Database = {
         Row: {
           guestId: number | null
           id: number
+          messageId: number | null
           photoId: number | null
         }
         Insert: {
           guestId?: number | null
           id?: number
+          messageId?: number | null
           photoId?: number | null
         }
         Update: {
           guestId?: number | null
           id?: number
+          messageId?: number | null
           photoId?: number | null
         }
         Relationships: [
@@ -220,6 +219,13 @@ export type Database = {
             columns: ["guestId"]
             isOneToOne: false
             referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "likes_messageId_fkey"
+            columns: ["messageId"]
+            isOneToOne: false
+            referencedRelation: "messages"
             referencedColumns: ["id"]
           },
         ]
@@ -291,21 +297,6 @@ export type Database = {
           },
         ]
       }
-      states: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
-        }
-        Relationships: []
-      }
       tables: {
         Row: {
           id: number
@@ -353,7 +344,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      role: "admin" | "guest"
+      status: "confirm" | "reject" | "pending"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -480,6 +472,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      role: ["admin", "guest"],
+      status: ["confirm", "reject", "pending"],
+    },
   },
 } as const

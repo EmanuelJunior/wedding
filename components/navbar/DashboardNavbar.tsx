@@ -127,9 +127,10 @@ export const DashboardNavbar = () => {
 
                   <form action={logout}>
                     <ButtonIcon
-                      icon={<Power className="text-red-800 dark:text-red-500 w-5 h-5" />}
+                      icon={<Power className="text-white w-5 h-5" />}
                       title="Salir"
                       type='submit'
+                      className="bg-red-600 dark:bg-red-500 hover:bg-red-800 dark:hover:bg-red-600 text-white"
                     />
                   </form>
                 </div>

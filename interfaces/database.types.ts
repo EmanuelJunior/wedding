@@ -109,7 +109,7 @@ export type Database = {
           familyId: number | null
           fullName: string
           id: number
-          invitationType: number | null
+          invitationType: Database["public"]["Enums"]["invitationType"] | null
           phone: string
           role: Database["public"]["Enums"]["role"]
           status: Database["public"]["Enums"]["status"]
@@ -121,7 +121,7 @@ export type Database = {
           familyId?: number | null
           fullName: string
           id?: number
-          invitationType?: number | null
+          invitationType?: Database["public"]["Enums"]["invitationType"] | null
           phone: string
           role?: Database["public"]["Enums"]["role"]
           status?: Database["public"]["Enums"]["status"]
@@ -133,7 +133,7 @@ export type Database = {
           familyId?: number | null
           fullName?: string
           id?: number
-          invitationType?: number | null
+          invitationType?: Database["public"]["Enums"]["invitationType"] | null
           phone?: string
           role?: Database["public"]["Enums"]["role"]
           status?: Database["public"]["Enums"]["status"]
@@ -157,13 +157,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "invitados_tipo_invitacion_id_fkey"
-            columns: ["invitationType"]
-            isOneToOne: false
-            referencedRelation: "invitationTypes"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "invitados_versiculo_id_fkey"
             columns: ["verseId"]
             isOneToOne: false
@@ -171,21 +164,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      invitationTypes: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
-        }
-        Relationships: []
       }
       likes: {
         Row: {
@@ -344,6 +322,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      invitationType: "Eucharist" | "Reception"
+      InvitationType: "Eucharist" | "Reception"
       role: "admin" | "guest"
       status: "confirm" | "reject" | "pending"
     }
@@ -473,6 +453,8 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      invitationType: ["Eucharist", "Reception"],
+      InvitationType: ["Eucharist", "Reception"],
       role: ["admin", "guest"],
       status: ["confirm", "reject", "pending"],
     },

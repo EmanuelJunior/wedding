@@ -99,7 +99,7 @@ export const DashboardNavbar = () => {
 
               { 
                 pathname === '/dashboard' &&
-                  <p className="font-semibold text-red-900 dark:text-red-500">• - { leftDay } días restantes</p>
+                  <p className="hidden font-semibold text-red-900 dark:text-red-500">• - { leftDay } días restantes</p>
               }
             </div>
           </div>

@@ -13,7 +13,7 @@ import {
 const DashboardPage = () => {
 
   return (
-    <main className="mx-10 sm:mx-16 md:mx-20 my-6 sm:my-10">
+    <main className="mx-5 sm:mx-16 md:mx-20 my-6 sm:my-10">
       
       <HeaderDashboard/>
       <DashboardLinksSection/>

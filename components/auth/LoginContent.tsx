@@ -49,17 +49,16 @@ export default function LoginContent() {
 
       if (index === emailInputArray.length - 1) {
         setTimeout(() => {
-          // setShowSuccess(true);
 
           login({
-            email,
-            password: invitationCode.join('')
+            email: searchParams.get('email') || '',
+            password: searchParams.get('code') || ''
           })
+
+          if ( !error ) setShowSuccess(true)
         }, (index + 1) * 100 + 200); // Wait for the last character to be set, plus a little extra time
       }
     })
-
-    
   }
 
   const animateCodeInput = (code: string) => {

@@ -51,7 +51,7 @@ export const HeaderDashboard = () => {
       />
       <h1 className="text-white text-4xl text-center">Hola, {auth?.fullName}!</h1>
       <p className="text-white mt-1">Nos emociona compartir este día especial contigo</p>
-      <p className="text-white mt-1 text-xs font-extralight w-1/2 text-center ">"Porque de tal manera amó Dios al mundo, que dio a su Hijo unigénito, para que todo el que cree en él no se pierda, sino que tenga vida eterna"</p>
+      <p className="text-white mt-1 text-xs font-extralight w-full md:w-1/2 text-center ">"Porque de tal manera amó Dios al mundo, que dio a su Hijo unigénito, para que todo el que cree en él no se pierda, sino que tenga vida eterna"</p>
       <span className="font-bold text-white text-xs">Juan 3:16</span>
 
       {
@@ -62,6 +62,7 @@ export const HeaderDashboard = () => {
               onClick={() => changeStatusAttendance("confirm")}
               isLoading={isPending}
               disabled={isPending}
+              href="/auth/login"
             >
               <CheckCircle className="w-4 h-4"/>
               ¡Confirmar Asistencia!

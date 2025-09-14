@@ -25,7 +25,7 @@ export const addMessage = async ( guestId: number, message: string ) => {
 
   const { data, error } = await supabase
     .from('messages')
-    .insert({ guestId, message, likes: 0 })
+    .insert({ guestId, message })
     .select()
     .single();
 
@@ -43,4 +43,22 @@ export const addMessageForm = async ( formData: FormData, guestId: number | unde
 
   console.log({ guestId, message });
   await addMessage( guestId, message );
+}
+
+export const getAllMessages = async () => {
+  const supabase = await createClient();
+
+  // get all mesages and fullName of guest who sent the message
+  const { data, error } = await supabase
+    .from('messages')
+    .select('id, message, guestId ( fullName )')
+    .order('createdAt', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching messages:', error);
+    return [];
+  }
+
+  console.log({ data });
+  return data;
 }

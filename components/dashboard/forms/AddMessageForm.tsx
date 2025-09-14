@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { addMessage, addMessageForm } from "@/app/actions/message";
+import { addMessageForm } from "@/app/actions/message";
 import { GuestContext } from "@/contexts/guest";
 import { Button, Textarea } from "@nextui-org/react";
 import { MessageCircle, Send } from "lucide-react";

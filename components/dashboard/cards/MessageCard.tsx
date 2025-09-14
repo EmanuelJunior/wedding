@@ -1,5 +1,7 @@
-import { Button, Card, CardBody } from "@nextui-org/react";
-import { Gem, ThumbsUp } from "lucide-react";
+// "use client"
+
+// import { Button, Card, CardBody } from "@nextui-org/react";
+// import { Gem, ThumbsUp } from "lucide-react";
 
 interface MessageCardProps {
   fullName: string;
@@ -7,13 +9,13 @@ interface MessageCardProps {
   likes: number;
 }
 
-export const MessageCard = ({}: MessageCardProps) => {
+export const MessageCard = ({ fullName, message, likes }: MessageCardProps) => {
   return (
-    <Card className="dark:bg-gray-900">
-      <CardBody>
+    <div className="dark:bg-gray-900">
+      <div>
         <div className="flex flex-col gap-2">
           <div className="flex gap-2 items-center">
-            <Gem className="w-6 h-6 text-red-700 dark:text-red-500" />
+            {/* <Gem className="w-6 h-6 text-red-700 dark:text-red-500" /> */}
             <h3 className="text-xl dark:text-white">Juan Pérez</h3>
           </div>
           <p className="text-xs dark:text-gray-300">
@@ -22,17 +24,17 @@ export const MessageCard = ({}: MessageCardProps) => {
           </p>
           {/* Me gusta */}
           <div className="flex gap-4">
-            <Button
-              variant="light"
-              size="sm"
+            <button
+              // variant="light"
+              // size="sm"
               className="text-[12px] h-6 bg-gray-100 dark:bg-gray-800 dark:text-white gap-1 px-2"
             >
-              <ThumbsUp className="w-3 h-3 text-red-700 dark:text-red-500" />
+              {/* <ThumbsUp className="w-3 h-3 text-red-700 dark:text-red-500" /> */}
               Me gusta
-            </Button>
+            </button>
           </div>
         </div>
-      </CardBody>
-    </Card>
+      </div>
+    </div>
   );
 };

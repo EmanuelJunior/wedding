@@ -1,15 +1,19 @@
-"use client"
+"use server"
 
-import { AddMessageForm, MessageCard } from "@/components/dashboard/"
+import { getAllMessages } from "@/app/actions/message"
+import { MessageCard } from "@/components/dashboard/"
 import { ideasForMessages } from "@/data/dashboard"
-import { Button, Card, CardBody } from "@nextui-org/react"
-import { Gem, Lightbulb, ThumbsUp } from "lucide-react"
+import { Lightbulb } from "lucide-react"
 
-const MessagePage = () => {
+const MessagePage = async() => {
+
+  const messages = await getAllMessages();
+  
   return (
     <main className='mt-10 mx-10 sm:mx-16 md:mx-28 lg:mx-40'>
       
-      <AddMessageForm/>
+      {/* Posible error aca */}
+      {/* <AddMessageForm/> */}
 
       <section className="dark:bg-gray-900 rounded-lg shadow-md flex-col justify-center items-center w-full mt-6 p-4">
         <div className="flex gap-1">
@@ -35,8 +39,9 @@ const MessagePage = () => {
         {/* Card of guest to wedding */}
         <div className='gap-4 my-4 grid grid-cols-1 md:grid-cols-2 '>
           
+          {/* Posible error aqui */}
           {
-            [...new Array(5)].map( (_, index) => (
+            [... new Array(4)].map( (_, index) => (
               <MessageCard
                 key={ index }
                 fullName="Juan Pérez"

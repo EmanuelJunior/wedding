@@ -2,6 +2,7 @@
 
 import { Database } from "@/interfaces/database.types";
 import { createClient } from "@/lib/server-client"
+import { revalidatePath } from "next/cache";
 
 export const fetchAuthGuest = async () => {
   const supabase = await createClient();
@@ -28,7 +29,9 @@ export const fetchAuthGuest = async () => {
   return data;
 }
 
-export const changeStatusGuest = async (guestId: number, status: Database["public"]["Enums"]["status"]) => {
+export const changeStatusGuest = async (
+  guestId: number, 
+  status: Database["public"]["Enums"]["status"]): Promise<Database['public']['Tables']['guests'] | null> => {
   const supabase = await createClient();
 
   const { data, error } = await supabase
@@ -43,5 +46,6 @@ export const changeStatusGuest = async (guestId: number, status: Database["publi
     return null;
   }
 
+  revalidatePath('/dashboard');
   return data;
 }

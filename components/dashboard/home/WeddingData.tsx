@@ -44,10 +44,10 @@ export const WeddingData = () => {
 
           <div className="flex items-center gap-1 mt-1">
             <MapPin className="w-4 h-4"/>
-            <p className="text-xs">Unidad alta vista</p>
+            <p className="text-xs">Apartamentos Olivar</p>
           </div>
 
-          <p className="text-xs mt-2">Cra. 42 #49-2, Rionegro, Antioquia</p>
+          <p className="text-xs mt-2">Cra. 60a #62-02, Rionegro, Antioquia</p>
         </article>
       </section>
 
@@ -68,7 +68,7 @@ export const WeddingData = () => {
         <div className="rounded-lg border border-sky-500 bg-sky-100 dark:bg-sky-900/50 dark:text-white p-4 flex flex-col justify-center items-center">
           <Coffee className="text-sky-500 w-7 h-7 mb-2"/>
           <h4 className="text-lg">Coctel</h4>
-          <p className="text-xs">5:30pm</p>
+          <p className="text-xs">6:00pm</p>
         </div>
 
       </section>

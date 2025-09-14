@@ -6,21 +6,44 @@ import { Database } from "@/interfaces/database.types"
 import { getMessageAttendance } from "@/utils"
 import { Button } from "@nextui-org/react"
 import { BadgeX, CheckCircle } from "lucide-react"
-import { useContext } from "react"
+import { useContext, useTransition, useOptimistic } from "react"
+
+type Status = Database['public']['Enums']['status'] // "pending" | "confirm" | "reject"
 
 export const HeaderDashboard = () => {
+  const { auth } = useContext(GuestContext)
 
-  const { auth } = useContext(GuestContext);
-  const { message, icon } = getMessageAttendance(auth);
+  // 1) Estado optimista SOLO para el status
+  const [optimisticStatus, addOptimisticStatus] = useOptimistic<Status>(
+    auth?.status ?? "pending",
+  )
 
-  const changeStatusAttendance = async(status: Database['public']['Enums']['status']) => {
-    if(auth?.status === "pending") {
-      changeStatusGuest(auth.id, status);
-    }
+  const { message, icon } = getMessageAttendance(optimisticStatus)
+
+  // 3) Transición no bloqueante
+  const [isPending, startTransition] = useTransition()
+
+  const changeStatusAttendance = (status: Status) => {
+    if (!auth || auth.status !== "pending") return
+
+    // a) UI optimista inmediata
+    addOptimisticStatus(status)
+
+    // b) Ejecutar la acción en transición
+    startTransition(async () => {
+      try {
+        await changeStatusGuest(auth.id, status)
+        // c) Sincronizar datos reales (si tu acción ya hace revalidatePath, esto puede ser opcional)
+        // router.refresh()
+      } catch (e) {
+        // d) Reversión simple si hay error
+        addOptimisticStatus("pending")
+      }
+    })
   }
 
   return (
-    <header className=" rounded-lg bg-gradient-to-r from-red-500 to-red-400 dark:from-red-600 dark:to-gray-900 p-5 flex justify-center items-center flex-col">
+    <header className="rounded-lg bg-gradient-to-r from-red-500 to-red-400 dark:from-red-600 dark:to-gray-900 p-5 flex justify-center items-center flex-col">
       <img 
         src="/banner-login.jpg" 
         alt="profile" 
@@ -32,19 +55,22 @@ export const HeaderDashboard = () => {
       <span className="font-bold text-white text-xs">Juan 3:16</span>
 
       {
-        auth && auth.status === 'pending' ? (
+        optimisticStatus === 'pending' ? (
           <section className="flex flex-wrap gap-3 justify-center items-center mt-3">
             <Button 
               className="bg-white w-full sm:w-auto dark:bg-gray-900 dark:hover:text-gray-950 dark:text-white rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-300 transition-all shadow-2xl"
               onClick={() => changeStatusAttendance("confirm")}
+              isLoading={isPending}
+              disabled={isPending}
             >
               <CheckCircle className="w-4 h-4"/>
               ¡Confirmar Asistencia!
             </Button>
 
             <Button 
-              className="bg-white w-full sm:w-auto dark:text-gray-950 rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-red-200 hover:to-indigo-200 hover:opacity-100 transition-all shadow-2xl opacity-60"
+              className="bg-white w-full sm:w-auto dark:text-gray-950 rounded-lg shadow-2xl text-xs flex gap-1 justify-center items-center hover:bg-gradient-to-r hover:from-red-200 hover:to-indigo-200 hover:opacity-100 transition-all shadow-2xl"
               onClick={() => changeStatusAttendance("reject")}
+              disabled={isPending}
             >
               <BadgeX className="w-4 h-4"/>
               No podré asistir

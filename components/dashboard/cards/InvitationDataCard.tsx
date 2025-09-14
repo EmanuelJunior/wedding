@@ -12,7 +12,7 @@ interface Props {
 export const InvitationDataCard = ({ invitation, time, name, address, icon, color = 'red' }: Props) => {
   return (
     <article className={`
-      flex flex-col border bg-${color}-100 border-${color}-500 dark:bg-${color}-900/50 
+      flex flex-col border bg-red-100 border-red-500 dark:bg-red-900/50 
       dark:text-white p-3 rounded-xl
     `}>
       <div className="flex items-center gap-1 mb-2">

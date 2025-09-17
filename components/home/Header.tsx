@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/react"
 import Image from "next/image"
 import { Loading } from "../ui"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export const Header = () => {
 
@@ -55,15 +56,17 @@ export const Header = () => {
           </p>
 
           <div className="flex gap-4">
-            <Button
-              variant="shadow"
-              color="danger"
-              radius="full"
-              className="font-cormorant text-base font-extrabold bg-gradient-to-tr dark:from-red-500 dark:to-red-400 from-red-400 to-red-600 px-6 py-3"
-              href="/auth/login"
-            >
-              Confirmar Asistencia
-            </Button>
+              <Button
+                variant="shadow"
+                color="danger"
+                radius="full"
+                className="font-cormorant text-base font-extrabold bg-gradient-to-tr dark:from-red-500 dark:to-red-400 from-red-400 to-red-600 px-6 py-3"
+                href="/auth/login"
+              >
+                <Link href='/auth/login'>
+                  Confirmar Asistencia
+                </Link>
+              </Button>
             <Button
               variant="ghost"
               radius="full"

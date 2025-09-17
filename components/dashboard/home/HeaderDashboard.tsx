@@ -43,7 +43,7 @@ export const HeaderDashboard = () => {
   }
 
   return (
-    <header className="rounded-lg bg-gradient-to-r from-red-500 to-red-400 dark:from-red-600 dark:to-gray-900 p-5 flex justify-center items-center flex-col">
+    <header className="rounded-lg bg-gradient-to-r from-red-500 to-red-700/40 dark:from-red-600 dark:to-gray-900 p-5 flex justify-center items-center flex-col">
       <img 
         src="/banner-login.jpg" 
         alt="profile" 

@@ -140,7 +140,7 @@ export default function LoginContent() {
               ) : error ?  (
                 <p className="font-cormorant dark:text-gray-300 text-gray-600 text-lg">
                   {error}
-                  </p>
+                </p>
               ) : (
                 <p className="font-cormorant dark:text-gray-300 text-gray-600 text-lg">
                   Has iniciado correctamente, 🌸 Un instante por favor... estamos preparando la invitación para ti
@@ -157,22 +157,18 @@ export default function LoginContent() {
                   code={invitationCode}
                   setCode={setInvitationCode}
                 />
-
-                {error && (
-                  <p className="text-[#AA1E2D] dark:text-red-500 text-sm">{error}</p>
-                )}
               </div>
             ) : (
               <>  
                 {
-                  showSuccess ? (
-                    <div className='flex justify-center'>
-                      <BadgeCheck className='w-16 h-16 text-red-700 dark:text-red-500 animate-pulse'/>
-                    </div>
-                  ) : error ? (
+                  error ? (
                     <div className='flex justify-center'>
                       <BadgeX className='w-16 h-16 text-red-700 dark:text-red-500 animate-pulse'/>
                     </div>
+                  ) : showSuccess ? (
+                    <div className='flex justify-center'>
+                      <BadgeCheck className='w-16 h-16 text-red-700 dark:text-red-500 animate-pulse'/>
+                    </div> 
                   ) : (
                     <input 
                       type='text' 

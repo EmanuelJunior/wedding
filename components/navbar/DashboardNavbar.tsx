@@ -176,6 +176,16 @@ export const DashboardNavbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+
+          <form action={logout}>
+            <ButtonIcon
+              icon={<Power className="text-white w-5 h-5" />}
+              title="Cerrar Sesión"
+              type='submit'
+              size="md"
+              className="my-5 w-full bg-red-700 dark:bg-red-500 hover:bg-red-800 dark:hover:bg-red-600 text-white text-3xl"
+            />
+          </form>
         </div>
       </NavbarMenu>
     </NextUINavbar>

@@ -1,6 +1,9 @@
 "use client"
 
+import { ButtonIcon } from "@/components/ui/buttons/ButtonIcon";
 import { dashboardPageLinks } from "@/data/dashboard";
+import { Button } from "@nextui-org/react";
+import { Power } from "lucide-react";
 import Link from "next/link";
 
 export const DashboardLinksSection = () => {
